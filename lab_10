@@ -1,0 +1,37 @@
+# Define the Morse code dictionary at the top
+morse_code_dict = {
+    'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.',
+    'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..',
+    'm': '--', 'n': '-.', 'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.',
+    's': '...', 't': '-', 'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-',
+    'y': '-.--', 'z': '--..',
+    '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-', 
+    '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.'
+}
+
+def clean_input(sentence, morse_dict):
+    filtered = ''.join(ch for ch in sentence.lower() if ch in morse_dict or ch == ' ')
+    return filtered
+
+def convert_to_morse(sentence, morse_dict):
+    morse_list = []
+    for word in sentence.strip().split():
+        word_morse = []
+        for letter in word:
+            word_morse.append(morse_dict[letter])
+        morse_list.append(word_morse)
+    return morse_list
+
+def display_morse_list(morse_list):
+    for word in morse_list:
+        print(" / ".join(word))  # slash between characters, space between words
+
+def main():
+    sentence = input("Enter a sentence: ")
+    sentence = clean_input(sentence, morse_code_dict)
+    morse_list = convert_to_morse(sentence, morse_code_dict)
+    print("Morse Code Output:")
+    display_morse_list(morse_list)
+
+if __name__ == "__main__":
+    main()
